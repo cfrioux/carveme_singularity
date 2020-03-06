@@ -1,0 +1,45 @@
+Bootstrap: docker
+From: ibmjava:latest
+
+%files
+     cplex_studio128.linux-x86-64.bin /tmp
+
+%environment
+     export PATH=$PATH:/programs
+     export PATH=$PATH:/opt/ibm/java/jre/bin/
+
+%post
+     apt-get -y update;\
+     DEBIAN_FRONTEND=noninteractive apt-get install -y \
+     curl \
+     csh \
+     wget \
+     git \
+     python3.6-dev \
+     python3.6-distutils \
+     openssh-server \
+     bzip2 \
+     build-essential \
+     zlib1g-dev \
+     libxm4; \
+     apt-get clean ;\
+     apt-get purge ;\
+     mkdir /var/run/sshd ;\
+     sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
+     sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config ;\
+     mkdir programs ;\
+     cd /tmp ;\
+     wget http://github.com/bbuchfink/diamond/releases/download/v0.9.26/diamond-linux64.tar.gz ;\
+     tar xzf diamond-linux64.tar.gz ;\
+     cp diamond /programs ;\
+     curl https://bootstrap.pypa.io/get-pip.py | python3 ;\
+     pip install carveme ;\
+     pip install future ;\
+     export PATH=$PATH:/programs
+     export PATH=$PATH:/opt/ibm/java/jre/bin/
+     chmod +x cplex_studio128.linux-x86-64.bin ;\
+     printf '4\n\n1\n\n\n\n\n' | ./cplex_studio128.linux-x86-64.bin ;\
+     cd /opt/ibm/ILOG/CPLEX_Studio128/python/ ;\
+     python3 setup.py install ;\
+     cd ;\
+     carveme_init

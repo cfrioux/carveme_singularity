@@ -19,3 +19,5 @@ The image is build with the following command:
 ```sh
 sudo singularity build singularity.sif singularity.def
 ```
+
+```carveme_2.def``` is another version of the image starting directly from the *ibmjava:latest* docker image

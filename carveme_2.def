@@ -33,6 +33,7 @@ From: ibmjava:latest
      tar xzf diamond-linux64.tar.gz ;\
      cp diamond /programs ;\
      curl https://bootstrap.pypa.io/get-pip.py | python3 ;\
+     pip install pandas==0.24 ;\
      pip install carveme ;\
      pip install future ;\
      export PATH=$PATH:/programs
@@ -42,4 +43,4 @@ From: ibmjava:latest
      cd /opt/ibm/ILOG/CPLEX_Studio128/python/ ;\
      python3 setup.py install ;\
      cd ;\
-     carveme_init
+     python3 -c 'from carveme.cli.carve import first_run_check; first_run_check()' ;\

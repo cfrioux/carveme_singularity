@@ -40,6 +40,7 @@ From: ibmjava:latest
      export PATH=$PATH:/opt/ibm/java/jre/bin/
      chmod +x cplex_studio128.linux-x86-64.bin ;\
      printf '4\n\n1\n\n\n\n\n' | ./cplex_studio128.linux-x86-64.bin ;\
+     #printf '4\n\n1\n\n\n\n\n2\n\n' | ./cplex_studio1210.linux-x86-64.bin ;\
      cd /opt/ibm/ILOG/CPLEX_Studio128/python/ ;\
      python3 setup.py install ;\
      cd ;\

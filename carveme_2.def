@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ibmjava:latest
 
 %files
-     cplex_studio128.linux-x86-64.bin /tmp
+     cplex_studio128.linux-x86-64.bin /opt
 
 %environment
      export PATH=$PATH:/programs
@@ -28,7 +28,7 @@ From: ibmjava:latest
      sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
      sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config ;\
      mkdir programs ;\
-     cd /tmp ;\
+     cd /opt ;\
      wget http://github.com/bbuchfink/diamond/releases/download/v0.9.26/diamond-linux64.tar.gz ;\
      tar xzf diamond-linux64.tar.gz ;\
      cp diamond /programs ;\

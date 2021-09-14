@@ -29,11 +29,11 @@ From: ibmjava:latest
      sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config ;\
      mkdir programs ;\
      cd /opt ;\
-     wget http://github.com/bbuchfink/diamond/releases/download/v0.9.26/diamond-linux64.tar.gz ;\
+     wget https://github.com/bbuchfink/diamond/releases/download/v2.0.11/diamond-linux64.tar.gz ;\
      tar xzf diamond-linux64.tar.gz ;\
      cp diamond /programs ;\
      curl https://bootstrap.pypa.io/get-pip.py | python3 ;\
-     pip install pandas==0.24 ;\
+     pip install pandas>=1.0 reframed>=1.2.1;\
      pip install carveme ;\
      pip install future ;\
      export PATH=$PATH:/programs

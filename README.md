@@ -1,5 +1,5 @@
 # carveme_singularity
-SIngularity image definition to install Cplex and Carveme in a container (e.g. for using the software on a cluster)
+Singularity image definition to install [IBM Cplex](https://www.ibm.com/analytics/cplex-optimizer) and [Carveme](https://github.com/cdanielmachado/carveme) in a container (e.g. for using the software on a cluster).
 
 ## Installation
 The binary file of Cplex (under license) has to be located in the same directory as the definition file. 
@@ -20,7 +20,7 @@ The image is build with the following command:
 sudo singularity build singularity.sif singularity.def
 ```
 
-```carveme_2.def``` is another version of the image starting directly from the *ibmjava:latest* docker image
+```carveme_2.def``` is another version of the image starting directly from the *ibmjava:latest* docker image. It has been tested with cplex 12.8 and 12.10. At this moment it is the only one updated. The size of the container file is around 1.8 Gb.
 
 If you have issue when using the container on a cluster, you can try these options:
 

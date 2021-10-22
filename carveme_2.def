@@ -2,7 +2,7 @@ Bootstrap: docker
 From: ibmjava:latest
 
 %files
-     cplex_studio128.linux-x86-64.bin /tmp
+     cplex_studio128.linux-x86-64.bin /opt
 
 %environment
      export PATH=$PATH:/programs
@@ -28,19 +28,20 @@ From: ibmjava:latest
      sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
      sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config ;\
      mkdir programs ;\
-     cd /tmp ;\
-     wget http://github.com/bbuchfink/diamond/releases/download/v0.9.26/diamond-linux64.tar.gz ;\
+     cd /opt ;\
+     wget https://github.com/bbuchfink/diamond/releases/download/v2.0.11/diamond-linux64.tar.gz ;\
      tar xzf diamond-linux64.tar.gz ;\
      cp diamond /programs ;\
      curl https://bootstrap.pypa.io/get-pip.py | python3 ;\
-     pip install pandas==0.24 ;\
+     pip install pandas>=1.0 reframed>=1.2.1;\
      pip install carveme ;\
      pip install future ;\
      export PATH=$PATH:/programs
      export PATH=$PATH:/opt/ibm/java/jre/bin/
      chmod +x cplex_studio128.linux-x86-64.bin ;\
      printf '4\n\n1\n\n\n\n\n' | ./cplex_studio128.linux-x86-64.bin ;\
+     # Use the following line for cplex 12.10 (and replaces iteration of '128' with '1210'):
+     #printf '4\n\n1\n\n\n\n\n2\n\n' | ./cplex_studio1210.linux-x86-64.bin ;\
      cd /opt/ibm/ILOG/CPLEX_Studio128/python/ ;\
      python3 setup.py install ;\
-     cd ;\
-     python3 -c 'from carveme.cli.carve import first_run_check; first_run_check()' ;\
+     python3 -c 'from carveme.cli.carve import first_run_check; first_run_check()'

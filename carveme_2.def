@@ -32,7 +32,7 @@ From: ibmjava:latest
      wget https://github.com/bbuchfink/diamond/releases/download/v2.0.11/diamond-linux64.tar.gz ;\
      tar xzf diamond-linux64.tar.gz ;\
      cp diamond /programs ;\
-     curl https://bootstrap.pypa.io/get-pip.py | python3 ;\
+     curl https://bootstrap.pypa.io/pip/3.6/get-pip.py | python3 ;\
      pip install pandas>=1.0 reframed>=1.2.1;\
      pip install carveme ;\
      pip install future ;\
